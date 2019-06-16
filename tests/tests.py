@@ -38,10 +38,3 @@ class MyTestClass():
 
         assert res.status_code == 200
 
-    
-
-   
-
-
-if __name__ == '__main__':
-    unittest.main()
