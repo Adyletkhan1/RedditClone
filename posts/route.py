@@ -56,7 +56,7 @@ def home():
 
 
 @app.route("/search/subreddit", methods=['GET', 'POST'])
-def search_for_subreddit():
+def search():
     form = search_for_subreddit()
     if form.validate_on_submit():
             return redirect(url_for('searchforsubreddit', string = form.search.data))
@@ -74,7 +74,7 @@ def searchforsubreddit(string):
 
 
 @app.route("/history")
-def user_history():
+def history():
     payload = {'limit': 10, 'sort': 'relevance'}
     response = requests.get('https://oauth.reddit.com/u/Adiletkhan1/',
                             headers=headers,
