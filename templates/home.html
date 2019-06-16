@@ -1,0 +1,31 @@
+
+{% block content %}
+<div class="col-sm-8">
+     {% for post in posts %}
+            <div class="card">
+                <div class="card-header">
+                    <strong>
+                        <button class="btn btn-light btn-sm">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        10.5k
+                        <button class="btn btn-light btn-sm">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                    </strong> r/Flask •<span class="text-muted" style="font-size: 10pt;"> {{ post['data']['author'] }}</span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ post['data']['title']}}</h5>
+                    <p class="card-text">
+                        {{ post['data']['ups']}}
+                    </p>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="" class="btn btn-light btn-sm"><i class="fas fa-comment"></i> {{ post['data']['num_comments'] }}</a>
+                    <a href="" class="btn btn-light btn-sm"><i class="fas fa-share"></i> Share</a>
+                </div>
+            </div></div>
+
+
+  {% endfor %}
+{% endblock content %}

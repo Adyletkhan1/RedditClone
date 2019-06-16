@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/'+'reddit.png') }}" />
+    <meta charset="UTF-8">
+    <title>®eddit</title>
+
+    <style>
+        body {
+            background-color: #DAE0E6;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
+            <a class="navbar-brand text-dark" href="{{ url_for('posts.home') }}">
+                <img src="{{ url_for('static', filename='img/'+'reddit.svg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                ®eddit
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-nav mr-2">
+                <!-- <a class="nav-item nav-link text-dark" href="#">Home</a> -->
+                <div class="dropdown show">
+                    <a class="btn btn-outline dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Home
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('posts.home')}}">All</a>
+                        <a class="dropdown-item" href="{{ url_for('posts.home')}}">Popular</a>
+
+                        <hr>
+
+                        <h6 class="dropdown-header">Relevant Subreddits</h6>
+
+                    </div>
+                </div>
+
+                <div class="dropdown show">
+                    <a class="btn btn-outline dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('posts.search_for_subreddit') }}">Search user</a>
+                        <a class="dropdown-item" href="{{ url_for('posts.search_for_subreddit') }}">Search subreddit</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-nav ml-auto">
+                <div>
+                    <a class="btn btn-outline-primary font-weight-bold btn-sm px-4" href="#">LOG IN</a>
+                    <a class="btn btn-primary font-weight-bold btn-sm px-4 ml-3 mr-2" href="#">SIGN UP</a>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="btn dropdown-item">Reddit Coins</a>
+                            <a class="btn dropdown-item">Reddit Premium</a>
+                            <a class="btn dropdown-item">Help Center</a>
+                            <a class="btn dropdown-item">Visit Old Reddit</a>
+                            <hr>
+                            <a class="btn dropdown-item">Log In / Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %} {% endif %} {% endwith %}
+
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Home</h5>
+                        <p class="card-text">
+                          Your personal Reddit frontpage. Come here to check in with your favorite communities.
+                        </p>
+                        <a href="{{ url_for('posts.home') }}" class="btn btn-primary btn-block text-uppercase font-weight-bold">Create Post</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional Javascript for bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/83858f079d.js"></script>
+</body>
+
+</html>

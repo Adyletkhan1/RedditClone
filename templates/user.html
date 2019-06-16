@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block content %}
+<div class="card mb-2">
+    <div class="row">
+        <div class="col-md-4 mr-3">
+            <img src="{{ user['icon_img'] }}" alt="" class="img-rounded img-responsive" />
+        </div>
+        <div class="col-md-6 mt-3">
+            <h4>{{ user['name'] }}</h4>
+            </i></cite></small>
+            <p>
+                Link karma: {{ user['link_karma'] }}
+                <br />
+                Comment karma: {{ user['comment_karma'] }}
+            	<br>
+				Cake Day: {{ time }}
+            </p>
+            <!-- Split button -->
 
-</body>
-</html>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-3">Comments History</h3>
+
+{% for comment in history %}
+<div class="mb-2">
+    <div class="card">
+        <div class="card-header">
+            <strong>
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+                {{ comment['data']['score'] }}
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+            </strong>
+
+            <span class="">
+                <a class="mr-2" href="#">{{ comment['data']['author'] }}</a>
+            </span>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                <p href="#">{{ comment['data']['body'] }}</p>
+            </h5>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+Flask
+Redis
+Flask_sqlalchemy
+Sqlalchemy
+requests
+praw
+jinja
+flask_wtf
+wtforms
+pytest
+coverage
